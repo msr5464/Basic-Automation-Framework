@@ -30,4 +30,4 @@ We are using Selenium, TestNG for Reporting, Java as a language to automate and 
 Output can be seen out in index.html file present in test-output folder, or directly in the Eclipse console.
 
 #FURTHER IMPLEMENTATIONS:
-Now, you can take hints from the test script(testcase) present in TestLoginFlows.java file and as per your own needs create required testcases, after creating similar classes in 'PageObjects' and 'Tests' packagesz.
+Now, you can take hints from the test script(testcase) present in TestLoginFlows.java file and as per your own needs create required testcases, after creating similar classes in 'PageObjects' and 'Tests' packages.
