@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>xo</groupId>
+  <artifactId>xo_automation</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>xo_automation</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+	  <groupId>org.testng</groupId>
+	  <artifactId>testng</artifactId>
+	  <version>6.8.8</version>
+	</dependency>
+
+    <dependency>
+	  <groupId>org.seleniumhq.selenium</groupId>
+	  <artifactId>selenium-java</artifactId>
+	  <version>2.53.0</version>
+	</dependency>
+	
+	<dependency>
+	  <groupId>com.jayway.restassured</groupId>
+	  <artifactId>rest-assured</artifactId>
+	  <version>2.9.0</version>
+	</dependency>
+	
+	<dependency>
+      <groupId>io.appium</groupId>
+      <artifactId>java-client</artifactId>
+      <version>4.1.2</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi-ooxml</artifactId>
+		<version>3.9</version>
+		<exclusions>
+			<exclusion>
+				<artifactId>xml-apis</artifactId>
+				<groupId>xml-apis</groupId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+
+  </dependencies>
+</project>
