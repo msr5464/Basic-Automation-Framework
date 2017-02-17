@@ -11,7 +11,7 @@ import helpers.Element;
 public class HomePage 
 {
 
-	@FindBy(css = "a.button")
+	@FindBy(linkText = "Sign in")
 	private WebElement signInButton;
 	
 	

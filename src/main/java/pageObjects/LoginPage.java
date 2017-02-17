@@ -7,19 +7,17 @@ import org.openqa.selenium.support.PageFactory;
 import helpers.Browser;
 import helpers.Config;
 import helpers.Element;
+import helpers.TestDataReader;
 
 public class LoginPage 
 {
-	@FindBy(id="user_email")
+	@FindBy(id="login_field")
 	private WebElement userNameTextBox;
 	
-	@FindBy(css=".btn.btn-default.button")
-	private WebElement continueBtn;
-	
-	@FindBy(id="user_password")
+	@FindBy(id="password")
 	private WebElement passwordTextBox;
 	
-	@FindBy(id="user_submit")
+	@FindBy(css=".btn.btn-primary.btn-block")
 	private WebElement signMeInBtn;
 	
 	
@@ -34,16 +32,18 @@ public class LoginPage
 		Browser.waitForPageLoad(testConfig, userNameTextBox);
 	}
 	
-	public Object Login(Config testConfig, String username, String password, ExpectedLandingPageAfterLogin expectedLandingPage)
+	public Object Login(Config testConfig, int loginDetailsSheetRow, ExpectedLandingPageAfterLogin expectedLandingPage)
 	{
-
-		Element.enterData(testConfig, userNameTextBox, username, "UserName");
-		Element.click(testConfig, continueBtn, "Continue Button");
+		//Reading data from excel sheet and then getting logged in
+		TestDataReader loginDetails = testConfig.getExcelSheet("LoginDetails");
+		String username = loginDetails.getData(loginDetailsSheetRow, "Username");
+		String password = loginDetails.getData(loginDetailsSheetRow, "Password");
 		
-		Browser.wait(testConfig, 2);
+		Element.enterData(testConfig, userNameTextBox, username, "UserName");
 		
 		Element.enterData(testConfig, passwordTextBox, password, "Password");
-		Element.click(testConfig, continueBtn, "Continue Button");
+		
+		Element.click(testConfig, signMeInBtn, "Sign In Button");
 		
 		switch(expectedLandingPage)
 		{

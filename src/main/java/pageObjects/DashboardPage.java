@@ -11,10 +11,10 @@ import helpers.Helper;
 public class DashboardPage 
 {
 
-	@FindBy(css=".user-name")
+	@FindBy(css=".header-nav-link.name.tooltipped.tooltipped-sw.js-menu-target")
 	private WebElement userNameWidget;
 
-	@FindBy(css="h1")
+	@FindBy(css=".shelf-title")
 	private WebElement mainHeading;
 	
 	public DashboardPage(Config testConfig)
@@ -25,6 +25,6 @@ public class DashboardPage
 	
 	public void verifyDashboardPage(Config testConfig)
 	{
-		Helper.compareEquals(testConfig, "Main Heading on Page", "Install Hello Bar Script", mainHeading.getText());
+		Helper.compareEquals(testConfig, "Main Heading on Page", "Learn Git and GitHub without any code!", mainHeading.getText());
 	}
 }
