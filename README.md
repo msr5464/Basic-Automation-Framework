@@ -1,12 +1,9 @@
 # QA_Automation_Project
 
-We are using Selenium, TestNG for Reporting, Java as a language to automate and Maven to manage all the dependencies throught the project, all of these resources are open source.
-
-TestNG is better choice over JUnit, for complete comparison please visit : http://www.mkyong.com/unittest/junit-4-vs-testng-comparison/
+We are using Selenium, TestNG for Reporting, Java as a language to automate and Maven to manage all the dependencies throughout the project, all of these resources are open source.
 
 
-We are using combination of "Page Object Model" and "Data Driven" automation frameworks to automate Hello Bar.
-
+This is Hybrid framework using properties of "Page Object Model" and "Data Driven" frameworks.
 
 
 This is the Package Representation of our Automation Framework:
