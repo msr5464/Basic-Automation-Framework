@@ -1,4 +1,4 @@
-QA AUTOMATION FRAMEWORK (SELENIUM + JAVA + TESTNG)
+#AUTOMATION FRAMEWORK (SELENIUM + JAVA + TESTNG)
 
 This is Hybrid framework created using properties of "Page Object Model" and "Data Driven" frameworks.
 
@@ -6,14 +6,15 @@ We are using Selenium, TestNG for Reporting, Java as a language to automate and 
 
 
 MAIN FEATURES OF PROJECT:
-=>> Use of Properties file
-=>> Use of DataProvider
-=>> Taking Screenshot on failure
-=>> Use of SoftAssert to run full test case
-=>> Excel Sheet Reader to read data
-=>> Supports Multiple Browsers
-=>> Proper Reporter Logging
-==>> Contains 1 demo test script(testcase) of verifying login flow of ‘github.com’ website
+
+1. ==>> Use of Properties file
+2. ==>> Use of DataProvider
+3. ==>> Taking Screenshot on failure
+4. ==>> Use of SoftAssert to run full test case
+5. ==>> Excel Sheet Reader to read data
+6. ==>> Supports Multiple Browsers
+7. ==>> Proper Reporter Logging
+8. ==>> Contains 1 demo test script(testcase) of verifying login flow of ‘github.com’ website
 
 
 CODE STRUCTURE:
@@ -32,3 +33,4 @@ To run this project:
 
 OUTPUT:
 Output can be seen out in index.html file present in test-output folder, or directly in the Eclipse console.
+This is the Package Representation of our Automation Framework:
