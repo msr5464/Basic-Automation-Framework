@@ -23,8 +23,11 @@ We are using Selenium, TestNG for Reporting, Java as a language to automate and 
 #EXECUTION STEPS:
 1. Import this project in eclipse as “Existing Maven Project”
 2. Install TestNG plugin in EcLipse
-3. Go to TestLoginFlows.java and Run the testcase
-4. Data is fetched from TestDataSheet excel sheet present in /Parameters folder.
+3. Go to TestLoginFlows.java and Run the single testcase present there
+4. After execution check the output
 
 #OUTPUT:
 Output can be seen out in index.html file present in test-output folder, or directly in the Eclipse console.
+
+#FURTHER IMPLEMENTATIONS:
+Now, you can take hints from the test script(testcase) present in TestLoginFlows.java file and as per your own needs create required testcases, after creating similar classes in 'PageObjects' and 'Tests' packagesz.
