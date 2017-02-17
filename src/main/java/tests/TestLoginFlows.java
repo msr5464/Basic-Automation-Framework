@@ -2,7 +2,6 @@ package tests;
 
 import org.testng.annotations.Test;
 
-import helpers.Appium;
 import helpers.Browser;
 import helpers.Config;
 import helpers.TestBase;
@@ -13,44 +12,6 @@ import pageObjects.LoginPage.ExpectedLandingPageAfterLogin;
 
 public class TestLoginFlows extends TestBase
 {
-	@Test(dataProvider="getTestConfig")
-	public void testMobileApp(Config testConfig)
-	{
-		Appium appium = new Appium(testConfig);
-		
-		appium.stopAppiumServer();
-	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@Test(dataProvider="getTestConfig")
 	public void testNegativeLoginFlow(Config testConfig)
@@ -89,7 +50,4 @@ public class TestLoginFlows extends TestBase
 		
 		dashboardPage.verifyDashboardPage(testConfig);
 	}
-	
-	
-	
 }

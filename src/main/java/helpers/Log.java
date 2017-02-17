@@ -36,7 +36,7 @@ class Log
 		
 		// Stop the execution if end execution flag is ON
 		if (testConfig.endExecutionOnfailure)
-			Assert.fail("Ending execution in the middle : "+tempMessage);
+			Assert.fail("=====>>Ending execution in the middle:-"+tempMessage);
 	}
 	
 	public static void Failfinal(Config testConfig, String message)
