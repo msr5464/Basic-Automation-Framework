@@ -2,8 +2,8 @@
 
 We are using Selenium, TestNG for Reporting, Java as a language to automate and Maven to manage all the dependencies throughout the project, all of these resources are open source.
 
-We are using combination of "Page Object Model" and "Data Driven" automation frameworks to automate Hello Bar.
 
+This is Hybrid framework using properties of "Page Object Model" and "Data Driven" frameworks.
 
 
 This is the Package Representation of our Automation Framework:
