@@ -155,7 +155,7 @@ public class Browser
 	
 	private static File getResultsDirectory(Config testConfig)
 	{
-		File dest = new File(testConfig.getRunTimeProperty("ResultsDir") + File.separator + "html" + File.separator );
+		File dest = new File(System.getProperty("user.dir") + File.separator + "html" + File.separator );
 		return dest;
 	}
 	
