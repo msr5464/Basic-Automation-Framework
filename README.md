@@ -11,7 +11,8 @@ We are using Selenium, TestNG for Reporting, Java as a language to automate and 
 5. ==>> Excel Sheet Reader to read testdata
 6. ==>> Supports execution on Multiple Browsers
 7. ==>> Proper Reporter Logging
-8. ==>> Contains 1 demo test script(testcase) of verifying login flow of ‘github.com’ website
+8. ==>> API Automation integrated (check ApiAutomationHelper.java)
+9. ==>> Contains 1 demo test script(testcase) of verifying login flow of ‘github.com’ website
 
 #CODE STRUCTURE:
 1. Helpers : This package will contain all the Helper classes which can be used throughout the automation project.(Framework related classes)
