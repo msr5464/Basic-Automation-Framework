@@ -1,4 +1,5 @@
 DESCRIPTION OF PROJECT(SELENIUM+JAVA+TESTNG):
+
 This is Hybrid framework created using properties of "Page Object Model" and "Data Driven" frameworks.
 
 We are using Selenium, TestNG for Reporting, Java as a language to automate and Maven to manage all the dependencies throughout the project, all of these resources are open source.
