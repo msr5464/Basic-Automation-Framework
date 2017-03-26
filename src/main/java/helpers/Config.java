@@ -9,6 +9,11 @@ import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.testng.asserts.SoftAssert;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
+
 public class Config 
 {
 	public WebDriver driver = null;
@@ -16,6 +21,11 @@ public class Config
 	public String testLog = "";
 	public SoftAssert softAssert = null;
 	public boolean endExecutionOnfailure = false;
+	public boolean remoteExecution;
+	
+	public AppiumDriver<MobileElement> appiumDriver = null;
+	protected AndroidDriver<MobileElement> androidDriver = null;
+	protected IOSDriver<MobileElement> iosDriver = null;
 
 	private Properties runTimeProperties = null;
 	
@@ -26,15 +36,27 @@ public class Config
 	{
 		softAssert = new SoftAssert();
 		runTimeProperties = new Properties();
-		Properties properties = null;
+		Properties properties = new Properties();;
 		
-		//Code to read .properties file and put key value pairs into RunTime Property file
 		try 
 		{
+			logComment("Read config.properties file...");
 			FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir")+File.separator+"Parameters"+File.separator+"config.properties");
-			properties = new Properties();
 			properties.load(fileInputStream);
 			fileInputStream.close();
+			
+			logComment("Read properties file of " + properties.get("Environment")+" environment...");
+			fileInputStream = new FileInputStream(System.getProperty("user.dir")+File.separator+"Parameters"+File.separator+properties.get("Environment")+".properties");
+			properties.load(fileInputStream);
+			fileInputStream.close();
+			
+			if(properties.get("MobileAppAutomation").toString().equalsIgnoreCase("true"))
+			{
+				logComment("Read properties file of " + properties.get("MobileAppName")+" application...");
+				fileInputStream = new FileInputStream(System.getProperty("user.dir")+File.separator+"Parameters"+File.separator+properties.get("MobileAppName")+".properties");
+				properties.load(fileInputStream);
+				fileInputStream.close();
+			}
 		} 
 		catch (Exception e) 
 		{
@@ -107,6 +129,12 @@ public class Config
 	
 	public void logFail(String message)
 	{
+		Log.Fail(this, message);
+	}
+	
+	public void logFailToEndExecution(String message)
+	{
+		this.endExecutionOnfailure = true;
 		Log.Fail(this, message);
 	}
 	
