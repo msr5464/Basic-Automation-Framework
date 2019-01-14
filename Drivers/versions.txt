@@ -1,0 +1,8 @@
+Selenium WebDriver - 3.11.0
+Supports Chrome v68
+ChromeDriver - 2.42
+FirefoxBrowser - 59.0.2
+GeckoDriver - 0.22
+
+Information Regarding Node and Hub Configurations can be found here : 
+https://stackoverflow.com/questions/43395659/properties-for-selenium-grid-hub-node-config

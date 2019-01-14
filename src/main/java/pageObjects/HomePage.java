@@ -8,22 +8,17 @@ import helpers.Browser;
 import helpers.Config;
 import helpers.Element;
 
-public class HomePage 
-{
+public class HomePage {
 
 	@FindBy(linkText = "Sign in")
 	private WebElement signInButton;
-	
-	
-	public HomePage(Config testConfig)
-	{
+
+	public HomePage(Config testConfig) {
 		PageFactory.initElements(testConfig.driver, this);
 		Browser.waitForPageLoad(testConfig, signInButton);
 	}
-	
-	
-	public LoginPage getLoginPage(Config testConfig)
-	{
+
+	public LoginPage getLoginPage(Config testConfig) {
 		Element.click(testConfig, signInButton, "Sign In Button");
 		return new LoginPage(testConfig);
 	}

@@ -7,38 +7,47 @@ import java.util.Map;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
 
-public class ApiAutomationHelper 
-{
+public class ApiAutomationHelper {
 	private Config testConfig;
-	
+
 	public enum ContentType {
-    	ANY, TEXT, JSON, XML, HTML, URLENC, BINARY, OTHERS;
-    }
-    
-	public ApiAutomationHelper(Config testConfig) 
-	{
+		ANY, TEXT, JSON, XML, HTML, URLENC, BINARY, OTHERS;
+	}
+
+	enum ApiRequestType {
+		DELETE, GET, POST, PUT, PATCH
+	}
+
+	public ApiAutomationHelper(Config testConfig) {
 		this.testConfig = testConfig;
 	}
-    
+
 	/**
 	 * Generic function to execute an API
+	 * 
 	 * @param testConfig
-	 * @param requestUrl - url of API
-	 * @param requestType - get/post etc
-	 * @param contentType - JSON/HTML/URLENC etc
-	 * @param parametersMap - pass all the params needed to execute the API
-	 * @param passParamsInBody - true/false, as per need
-	 * @param logResultOutput - Pass true if that API is not redirecting to another URL and you want to print the logs
+	 * @param requestUrl
+	 *            - url of API
+	 * @param requestType
+	 *            - get/post etc
+	 * @param contentType
+	 *            - JSON/HTML/URLENC etc
+	 * @param parametersMap
+	 *            - pass all the params needed to execute the API
+	 * @param passParamsInBody
+	 *            - true/false, as per need
+	 * @param logResultOutput
+	 *            - Pass true if that API is not redirecting to another URL and
+	 *            you want to print the logs
 	 * @return
 	 */
-	public Response ExecuteAndGetResponse(Config testConfig, String requestUrl, String requestType, ContentType contentType, Map<String, String> parametersMap, Boolean passParamsInBody)
-	{
-		
+	public Response ExecuteAndGetResponse(Config testConfig, String requestUrl, ApiRequestType apiRequestType,
+			ContentType contentType, Map<String, String> parametersMap, Boolean passParamsInBody) {
+
 		RequestSpecification reqspec = null;
 		testConfig.logComment("*****************************************************************");
-		
-		switch(contentType)
-		{
+
+		switch (contentType) {
 		case ANY:
 			reqspec = given().contentType(com.jayway.restassured.http.ContentType.ANY);
 			break;
@@ -65,46 +74,48 @@ public class ApiAutomationHelper
 			break;
 		}
 
-		//Pass all the parameters
-		if(passParamsInBody)
+		// Pass all the parameters
+		if (passParamsInBody)
 			reqspec.body(parametersMap.get("params"));
-		else if(parametersMap != null)
+		else if (parametersMap != null)
 			reqspec = reqspec.parameters(parametersMap);
-		
+
 		// Log the request details
-			reqspec = reqspec.log().all();
-		
+		reqspec = reqspec.log().all();
+
 		// Execute API
 		reqspec = reqspec.when();
-		
+
 		Response response = null;
-		switch(requestType.toLowerCase())
-		{
-		case "get":
+		switch (apiRequestType) {
+		case GET:
 			response = reqspec.get(requestUrl);
 			break;
-		case "post":
+		case POST:
 			response = reqspec.post(requestUrl);
 			break;
-		case "delete":
+		case DELETE:
 			response = reqspec.delete(requestUrl);
 			break;
-		case "put":
+		case PUT:
 			response = reqspec.put(requestUrl);
+			break;
+		case PATCH:
+			response = reqspec.patch(requestUrl);
+			break;
+		default:
 			break;
 		}
 
-		response = response
-				.then()
-				.extract()
-				.response();
+		response = response.then().extract().response();
 
-		//Code to print the response, in case response is Empty then print the redirection URL
+		// Code to print the response, in case response is Empty then print the
+		// redirection URL
 		String responseData = response.asString();
-		if(responseData.equals(""))
+		if (responseData.equals(""))
 			responseData = response.getHeader("location");
-		
-		testConfig.logComment("API Response for " + requestUrl + " :- "+ responseData);
+
+		testConfig.logComment("API Response for " + requestUrl + " :- " + responseData);
 		return response;
 	}
 }
