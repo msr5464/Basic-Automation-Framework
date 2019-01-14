@@ -12,7 +12,7 @@ public class ApiAutomationHelper
 	private Config testConfig;
 	
 	public enum ContentType {
-    	ANY,TEXT,JSON,XML,HTML,URLENC,BINARY,OTHERS;
+    	ANY, TEXT, JSON, XML, HTML, URLENC, BINARY, OTHERS;
     }
     
 	public ApiAutomationHelper(Config testConfig) 
