@@ -55,30 +55,13 @@ public class ProjectHelper extends ApiHelper
 		JSONObject jsonObj = new JSONObject(response.asString());
 		switch (apiDetails)
 		{
-		case USER_SIGNUP:
-			AssertHelper.compareEquals(testConfig, "API response code", 201, response.getStatusCode());
-			AssertHelper.compareEquals(testConfig, "status", true, jsonObj.get("status"));
-			AssertHelper.compareEquals(testConfig, "type", "Command execution success!", jsonObj.get("type"));
-			AssertHelper.compareEquals(testConfig, "message", "Successfully registered.", jsonObj.get("message"));
-			
-			JSONObject innerJson = new JSONObject(jsonObj.get("data").toString());
-			AssertHelper.compareEquals(testConfig, "role of innerJson", testData.get("role"), innerJson.get("role"));
-			AssertHelper.compareEquals(testConfig, "scope of innerJson", testData.get("scope"), innerJson.get("scope"));
-			AssertHelper.compareEquals(testConfig, "gender innerJson", testData.get("gender"), innerJson.get("gender"));
-			AssertHelper.compareEquals(testConfig, "username of innerJson", testData.get("username"), innerJson.get("username"));
-			AssertHelper.compareEquals(testConfig, "first_name of innerJson", testData.get("first_name"), innerJson.get("first_name"));
-			AssertHelper.compareEquals(testConfig, "middle_name of innerJson", testData.get("middle_name"), innerJson.get("middle_name"));
-			AssertHelper.compareEquals(testConfig, "last_name of innerJson", testData.get("last_name"), innerJson.get("last_name"));
-			AssertHelper.compareEquals(testConfig, "locale of innerJson", "USA", innerJson.get("locale"));
-			AssertHelper.compareEquals(testConfig, "profile of innerJson", "N/A", innerJson.get("profile"));
-			break;
 		case USER_LOGIN:
 			AssertHelper.compareEquals(testConfig, "API response code", 200, response.getStatusCode());
 			AssertHelper.compareEquals(testConfig, "status", true, jsonObj.get("status"));
 			AssertHelper.compareEquals(testConfig, "type", "Command execution success!", jsonObj.get("type"));
 			AssertHelper.compareEquals(testConfig, "message", "Login successful.", jsonObj.get("message"));
 			
-			innerJson = new JSONObject(jsonObj.get("data").toString());
+			JSONObject innerJson = new JSONObject(jsonObj.get("data").toString());
 			String id_token = innerJson.get("id_token").toString();
 			testConfig.putRunTimeProperty("Authorization", "Bearer " + id_token);
 			break;
@@ -112,24 +95,6 @@ public class ProjectHelper extends ApiHelper
 				AssertHelper.compareEquals(testConfig, "middle_name of innerJson", testData.get("middle_name"), innerJson.get("middle_name"));
 				AssertHelper.compareEquals(testConfig, "last_name of innerJson", testData.get("last_name"), innerJson.get("last_name"));
 			}
-			break;
-		case GET_USER_SUB:
-			AssertHelper.compareEquals(testConfig, "API response code", 200, response.getStatusCode());
-			AssertHelper.compareEquals(testConfig, "status", true, jsonObj.get("status"));
-			AssertHelper.compareEquals(testConfig, "type", "Command execution success!", jsonObj.get("type"));
-			AssertHelper.compareEquals(testConfig, "message", "Successfully get user.", jsonObj.get("message"));
-			
-			innerJson = new JSONObject(jsonObj.get("data").toString());
-			AssertHelper.compareEquals(testConfig, "email_verified of innerJson", "false", innerJson.get("email_verified"));
-			AssertHelper.compareEquals(testConfig, "email of innerJson", testData.get("username"), innerJson.get("email"));
-			AssertHelper.compareEquals(testConfig, "name of innerJson", testData.get("first_name")+" "+testData.get("last_name"), innerJson.get("name"));
-			testConfig.putRunTimeProperty("sub", innerJson.get("sub"));
-			break;
-		case CONFIRM_USER_SIGNUP:
-			AssertHelper.compareEquals(testConfig, "API response code", 200, response.getStatusCode());
-			AssertHelper.compareEquals(testConfig, "status", true, jsonObj.get("status"));
-			AssertHelper.compareEquals(testConfig, "type", "Command execution success!", jsonObj.get("type"));
-			AssertHelper.compareEquals(testConfig, "message", "User confirmation success!", jsonObj.get("message"));
 			break;
 		default:
 			testConfig.logFail("Key-values are not being verified in the response");

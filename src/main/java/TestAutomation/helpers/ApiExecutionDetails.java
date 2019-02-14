@@ -37,21 +37,9 @@ public class ApiExecutionDetails
 	
 	public enum ApiDetails 
 	{
-		USER_SIGNUP("/user", ApiHost.ApiBaseUrl, ApiRequestType.POST, ContentType.JSON, null, null, Headers.Accept),
 		USER_LOGIN("/user/login", ApiHost.ApiBaseUrl, ApiRequestType.POST, ContentType.JSON, null, null, Headers.Accept),
 		USER_UPDATE("/user", ApiHost.ApiBaseUrl, ApiRequestType.PUT, ContentType.JSON, null, null, Headers.Authorization),
-		GET_USER_DETAILS("/user/{$username}", ApiHost.ApiBaseUrl, ApiRequestType.GET, null, null, null, Headers.Authorization),
-		GET_USER_SUB("/user/get-auth-user/{$username}", ApiHost.ApiBaseUrl, ApiRequestType.GET, null, null, null, Headers.Accept),
-		CONFIRM_USER_SIGNUP("/user/confirm-signup?sub={$sub}", ApiHost.ApiBaseUrl, ApiRequestType.GET, null, null, null, Headers.Accept),
-		
-		USER_LOGIN_BY_FACEBOOK("/user/login", ApiHost.ApiBaseUrl, ApiRequestType.POST, ContentType.JSON, null, null, Headers.Accept),
-		USER_LOGIN_BY_GOOGLE("/user/login", ApiHost.ApiBaseUrl, ApiRequestType.POST, ContentType.JSON, null, null, Headers.Accept),
-		UPLOAD_IMAGE("/user/{$username}", ApiHost.ApiBaseUrl, ApiRequestType.GET, null, null, null, Headers.Authorization),
-		INITIATE_FORGOT_PASSWORD("/user/login", ApiHost.ApiBaseUrl, ApiRequestType.POST, ContentType.JSON, null, null, Headers.Accept),
-		CONFIRM_FORGOT_PASSWORD("/user/login", ApiHost.ApiBaseUrl, ApiRequestType.POST, ContentType.JSON, null, null, Headers.Accept),
-		
-		CHANGE_PASSWORD("/user/change-password", ApiHost.ApiBaseUrl, ApiRequestType.PUT, ContentType.JSON, null, null, Headers.Authorization),
-		USER_DELETE("/user/{$username}", ApiHost.ApiBaseUrl, ApiRequestType.DELETE, null, null, null, Headers.Authorization);
+		GET_USER_DETAILS("/user/{$username}", ApiHost.ApiBaseUrl, ApiRequestType.GET, null, null, null, Headers.Authorization);
 		
 		ContentType apiContentType;
 		ApiHost apiHost;
