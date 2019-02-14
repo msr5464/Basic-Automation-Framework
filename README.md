@@ -8,7 +8,7 @@ This is the list of tools, being used in this framework:
 2. Java 8
 3. Selenium Webdriver 3.11.0
 4. TestNG Framework 6.8.8
-5. Rest Assured Framework 2.9.0
+5. Rest Assured Framework 3.2.0
 6. Chrome Web & Mobile View
 7. Firefox Web & Mobile View
 8. Email Notifications
