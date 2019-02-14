@@ -1,13 +1,13 @@
-package pageObjects;
+package TestAutomation.pageObjects;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import helpers.Browser;
-import helpers.Config;
-import helpers.Element;
-import helpers.TestDataReader;
+import TestAutomation.helpers.Config;
+import TestAutomation.helpers.Element;
+import TestAutomation.helpers.TestDataReader;
+import TestAutomation.helpers.WaitHelper;
 
 public class LoginPage {
 	@FindBy(id = "login_field")
@@ -25,15 +25,14 @@ public class LoginPage {
 
 	public LoginPage(Config testConfig) {
 		PageFactory.initElements(testConfig.driver, this);
-		Browser.waitForPageLoad(testConfig, userNameTextBox);
+		WaitHelper.waitForPageLoad(testConfig, userNameTextBox);
 	}
 
-	public Object Login(Config testConfig, int loginDetailsSheetRow,
-			ExpectedLandingPageAfterLogin expectedLandingPage) {
+	public Object Login(Config testConfig, int loginDetailsSheetRow, ExpectedLandingPageAfterLogin expectedLandingPage) {
 		// Reading data from excel sheet and then getting logged in
 		TestDataReader loginDetails = testConfig.getExcelSheet("LoginDetails");
-		String username = loginDetails.getData(loginDetailsSheetRow, "Username");
-		String password = loginDetails.getData(loginDetailsSheetRow, "Password");
+		String username = loginDetails.getData(testConfig, loginDetailsSheetRow, "Username");
+		String password = loginDetails.getData(testConfig, loginDetailsSheetRow, "Password");
 
 		Element.enterData(testConfig, userNameTextBox, username, "UserName");
 

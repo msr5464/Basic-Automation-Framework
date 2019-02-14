@@ -1,0 +1,12 @@
+{
+    "code": 200,
+    "status": true,
+    "type": "Command execution success!",
+    "message": "Successfully updated",
+    "data": {
+        "code": 200,
+        "status": true,
+        "type": "Command execution success!",
+        "message": "Successfully updated attributes."
+    }
+}

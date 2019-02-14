@@ -1,4 +1,4 @@
-package helpers;
+package TestAutomation.helpers;
 
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
@@ -7,6 +7,11 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.internal.TestResult;
 
+/**
+ * This class is overriding defaults functionalities of TestNG
+ * @author MukeshR
+ *
+ */
 public class TestListener implements ITestListener, IInvokedMethodListener {
 
 	public void onTestFailure(ITestResult result) {

@@ -1,12 +1,12 @@
-package pageObjects;
+package TestAutomation.pageObjects;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import helpers.Browser;
-import helpers.Config;
-import helpers.Element;
+import TestAutomation.helpers.Config;
+import TestAutomation.helpers.Element;
+import TestAutomation.helpers.WaitHelper;
 
 public class HomePage {
 
@@ -15,7 +15,7 @@ public class HomePage {
 
 	public HomePage(Config testConfig) {
 		PageFactory.initElements(testConfig.driver, this);
-		Browser.waitForPageLoad(testConfig, signInButton);
+		WaitHelper.waitForPageLoad(testConfig, signInButton);
 	}
 
 	public LoginPage getLoginPage(Config testConfig) {
