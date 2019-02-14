@@ -12,7 +12,6 @@ This is the list of tools, being used in this framework:
 6. Chrome Web & Mobile View
 7. Firefox Web & Mobile View
 8. Email Notifications
-9. Git
 
 
 # What is Test Automation Framework?
@@ -30,15 +29,15 @@ The Page Object Model is a design pattern of testing, derived from the Object Or
 
 
 # MAIN FEATURES OF THIS PROJECT
-1. ==>> Use of config.properties file
-2. ==>> Use of DataProvider to supply testdata
-3. ==>> Taking Screenshot on test failure
-4. ==>> Use of SoftAssert to run full test case
-5. ==>> Excel Sheet Reader to read testdata
-6. ==>> Supports execution on Multiple Browsers
-7. ==>> Proper Reporter Logging
-8. ==>> API Automation integrated (check ApiAutomationHelper.java)
-9. ==>> Contains 1 demo test script(testcase) of verifying login flow of ‘github.com’ website
+1. Use of config.properties file
+2. Use of DataProvider to supply testdata
+3. Taking Screenshot on test failure
+4. Use of SoftAssert to run full test case
+5. Excel Sheet Reader to read testdata
+6. Supports execution on Multiple Browsers
+7. Proper Reporter Logging
+8. API Automation integrated (check ApiAutomationHelper.java)
+9. Contains 1 demo test script(testcase) of verifying login flow of ‘github.com’ website
 
 
 # CODE STRUCTURE
