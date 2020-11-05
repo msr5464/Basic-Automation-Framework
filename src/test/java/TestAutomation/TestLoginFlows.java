@@ -25,7 +25,7 @@ public class TestLoginFlows extends TestBase {
 		LoginPage loginPage = (LoginPage) homePage.getLoginPage(testConfig);
 
 		// Now Login and reach to Dashboard Page
-		DashboardPage dashboardPage = (DashboardPage) loginPage.Login(testConfig, loginDetailsSheetRowNumber, ExpectedLandingPageAfterLogin.DashboardPage);
+		DashboardPage dashboardPage = (DashboardPage) loginPage.doLogin(testConfig, loginDetailsSheetRowNumber, ExpectedLandingPageAfterLogin.DashboardPage);
 
 		// Verifying if Dashboard is loaded successfully or not
 		dashboardPage.verifyDashboardPage(testConfig);

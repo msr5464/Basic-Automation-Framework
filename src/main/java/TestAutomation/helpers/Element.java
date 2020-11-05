@@ -635,53 +635,6 @@ public class Element
 	}
 
 	/**
-	 * This function reveals file input element and sends file path
-	 * 
-	 * @param testConfig
-	 *            - for logging purposes
-	 * @param csspath
-	 *            - path to uploader input
-	 * @param filePath
-	 *            - path to file
-	 * @param description
-	 *            - for logging purposes
-	 */
-	public static void revealInputAndUploadFile(Config testConfig, String csspath, String filePath, String description)
-	{
-		if(!File.separator.equals("\\"))
-			filePath = filePath.replaceAll("\\\\", File.separator);
-
-		WebElement fileInput = reveal(testConfig, csspath);
-		try
-		{
-			Element.enterFileName(testConfig, fileInput, filePath, description);
-		}
-		catch (StaleElementReferenceException elementReferenceException)
-		{
-			testConfig.logComment("Stale element reference exception. Trying again...");
-			fileInput = getPageElement(testConfig, How.css, csspath);
-			Element.enterFileName(testConfig, fileInput, filePath, description);
-		}
-
-		try
-		{
-			fileInput = getPageElement(testConfig, How.css, csspath);
-		}
-		catch(UnhandledAlertException uae)
-		{}
-
-		if(!Popup.isAlertPresent(testConfig) && fileInput.isDisplayed())
-		{
-			Element.clickThroughJS(testConfig, fileInput, "File input");
-			WaitHelper.waitForSeconds(testConfig, 3);
-
-			Element.enterFileName(testConfig, fileInput, filePath, description);
-
-			WaitHelper.waitForSeconds(testConfig, 2);
-		}
-	}
-
-	/**
 	 * Selects the given 'value' attribute for the specified WebElement
 	 * 
 	 * @param testConfig

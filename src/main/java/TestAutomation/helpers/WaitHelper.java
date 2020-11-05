@@ -250,12 +250,4 @@ public class WaitHelper {
 			testConfig.logWarning("Optional element '"+description+"' is not visible!");
 		}
 	}
-
-	public static void waitForAlert(Config testConfig){
-		int max = 50, count = 0;
-		while (!Popup.isAlertPresent(testConfig) && count <= max){
-			waitForSeconds(testConfig, 2);
-			count += 2;
-		}
-	}
 }

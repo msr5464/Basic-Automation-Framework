@@ -28,7 +28,7 @@ public class LoginPage {
 		WaitHelper.waitForPageLoad(testConfig, userNameTextBox);
 	}
 
-	public Object Login(Config testConfig, int loginDetailsSheetRow, ExpectedLandingPageAfterLogin expectedLandingPage) {
+	public Object doLogin(Config testConfig, int loginDetailsSheetRow, ExpectedLandingPageAfterLogin expectedLandingPage) {
 		// Reading data from excel sheet and then getting logged in
 		TestDataReader loginDetails = testConfig.getExcelSheet("LoginDetails");
 		String username = loginDetails.getData(testConfig, loginDetailsSheetRow, "Username");
