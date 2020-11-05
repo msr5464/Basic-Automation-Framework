@@ -1,5 +1,3 @@
-<img src="https://raw.githubusercontent.com/msr5464/BasicFramework/master/Drivers/ThanosLogo.png" title="Powered by Thanos and created by Mukesh Rajput" height="50">
-
 # Test Automation Framework
 This is Hybrid Automation Framework created using properties of `Page Object Model` and `Data Driven` automation frameworks.
 The framework is created using the latest Selenium 3 features with Java, TestNG and Maven for Web-based automation, integrated with Appium for Mobile App automation and also integrated with Rest Assured for API Automation execution.
