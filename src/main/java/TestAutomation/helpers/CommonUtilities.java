@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URI;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -37,7 +38,7 @@ public class CommonUtilities
 	 */
 	public static String formatStringAsJson(String input)
 	{
-		return new GsonBuilder().setPrettyPrinting().create().toJson(new JsonParser().parse(input));
+		return new GsonBuilder().setPrettyPrinting().create().toJson(JsonParser.parseString(input));
 	}
 	
 	/**
@@ -160,7 +161,7 @@ public class CommonUtilities
 		BufferedReader in = null;
 		try
 		{
-			URL whatismyip = new URL("http://checkip.amazonaws.com");
+			URL whatismyip = URI.create("http://checkip.amazonaws.com").toURL();
 			in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
 			String ip = in.readLine();
 			System.out.println("Current Machine's IP Address:- " + ip);

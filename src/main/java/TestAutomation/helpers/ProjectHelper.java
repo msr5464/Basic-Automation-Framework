@@ -2,7 +2,6 @@ package TestAutomation.helpers;
 
 import java.util.HashMap;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import TestAutomation.helpers.ApiExecutionDetails.ApiDetails;
@@ -55,46 +54,39 @@ public class ProjectHelper extends ApiHelper
 		JSONObject jsonObj = new JSONObject(response.asString());
 		switch (apiDetails)
 		{
-		case USER_LOGIN:
-			AssertHelper.compareEquals(testConfig, "API response code", 200, response.getStatusCode());
-			AssertHelper.compareEquals(testConfig, "status", true, jsonObj.get("status"));
-			AssertHelper.compareEquals(testConfig, "type", "Command execution success!", jsonObj.get("type"));
-			AssertHelper.compareEquals(testConfig, "message", "Login successful.", jsonObj.get("message"));
-			
-			JSONObject innerJson = new JSONObject(jsonObj.get("data").toString());
-			String id_token = innerJson.get("id_token").toString();
-			testConfig.putRunTimeProperty("Authorization", "Bearer " + id_token);
-			break;
-		case USER_UPDATE:
-			AssertHelper.compareEquals(testConfig, "API response code", 200, response.getStatusCode());
-			AssertHelper.compareEquals(testConfig, "status", true, jsonObj.get("status"));
-			AssertHelper.compareEquals(testConfig, "type", "Command execution success!", jsonObj.get("type"));
-			AssertHelper.compareEquals(testConfig, "message", "Successfully updated", jsonObj.get("message"));
-			
-			innerJson = new JSONObject(jsonObj.get("data").toString());
-			AssertHelper.compareEquals(testConfig, "API response code of innerJson", 200, innerJson.get("code"));
-			AssertHelper.compareEquals(testConfig, "status of innerJson", true, innerJson.get("status"));
-			AssertHelper.compareEquals(testConfig, "type of innerJson", "Command execution success!", innerJson.get("type"));
-			AssertHelper.compareEquals(testConfig, "message of innerJson", "Successfully updated attributes.", innerJson.get("message"));
-			break;
 		case GET_USER_DETAILS:
 			AssertHelper.compareEquals(testConfig, "API response code", 200, response.getStatusCode());
-			AssertHelper.compareEquals(testConfig, "status", true, jsonObj.get("status"));
-			AssertHelper.compareEquals(testConfig, "type", "Command execution success!", jsonObj.get("type"));
-			AssertHelper.compareEquals(testConfig, "message", "User details found.", jsonObj.get("message"));
+			AssertHelper.assertNotNull(testConfig, "id", jsonObj.get("id"));
+			AssertHelper.assertNotNull(testConfig, "name", jsonObj.get("name"));
+			AssertHelper.assertNotNull(testConfig, "username", jsonObj.get("username"));
+			AssertHelper.assertNotNull(testConfig, "email", jsonObj.get("email"));
+			AssertHelper.assertNotNull(testConfig, "phone", jsonObj.get("phone"));
+			AssertHelper.assertNotNull(testConfig, "website", jsonObj.get("website"));
 			
-			JSONArray jsonArrObj = new JSONArray(jsonObj.get("data").toString());
-			for(int arrSize = 0; arrSize < jsonArrObj.length(); arrSize++)
-			{
-				innerJson = jsonArrObj.getJSONObject(arrSize);
-				AssertHelper.compareEquals(testConfig, "role of innerJson", testData.get("role"), innerJson.get("role"));
-				AssertHelper.compareEquals(testConfig, "scope of innerJson", testData.get("scope"), innerJson.get("scope"));
-				AssertHelper.compareEquals(testConfig, "gender innerJson", testData.get("gender"), innerJson.get("gender"));
-				AssertHelper.compareEquals(testConfig, "username of innerJson", testData.get("username"), innerJson.get("username"));
-				AssertHelper.compareEquals(testConfig, "first_name of innerJson", testData.get("first_name"), innerJson.get("first_name"));
-				AssertHelper.compareEquals(testConfig, "middle_name of innerJson", testData.get("middle_name"), innerJson.get("middle_name"));
-				AssertHelper.compareEquals(testConfig, "last_name of innerJson", testData.get("last_name"), innerJson.get("last_name"));
-			}
+			// Store user ID for future API calls
+			String userId = jsonObj.get("id").toString();
+			testConfig.putRunTimeProperty("userId", userId);
+			break;
+		case GET_USERS_LIST:
+			AssertHelper.compareEquals(testConfig, "API response code", 200, response.getStatusCode());
+			AssertHelper.assertNotNull(testConfig, "users list", jsonObj);
+			break;
+		case CREATE_USER:
+			AssertHelper.compareEquals(testConfig, "API response code", 201, response.getStatusCode());
+			AssertHelper.compareEquals(testConfig, "name", testData.get("name"), jsonObj.get("name"));
+			AssertHelper.compareEquals(testConfig, "username", testData.get("username"), jsonObj.get("username"));
+			AssertHelper.compareEquals(testConfig, "email", testData.get("email"), jsonObj.get("email"));
+			AssertHelper.assertNotNull(testConfig, "id", jsonObj.get("id"));
+			break;
+		case UPDATE_USER:
+			AssertHelper.compareEquals(testConfig, "API response code", 200, response.getStatusCode());
+			AssertHelper.compareEquals(testConfig, "name", testData.get("name"), jsonObj.get("name"));
+			AssertHelper.compareEquals(testConfig, "username", testData.get("username"), jsonObj.get("username"));
+			AssertHelper.compareEquals(testConfig, "email", testData.get("email"), jsonObj.get("email"));
+			AssertHelper.assertNotNull(testConfig, "id", jsonObj.get("id"));
+			break;
+		case DELETE_USER:
+			AssertHelper.compareEquals(testConfig, "API response code", 200, response.getStatusCode());
 			break;
 		default:
 			testConfig.logFail("Key-values are not being verified in the response");

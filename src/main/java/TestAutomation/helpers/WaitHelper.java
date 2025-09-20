@@ -1,6 +1,7 @@
 package TestAutomation.helpers;
 
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -56,7 +57,7 @@ public class WaitHelper {
 		Date startDate = new Date();
 		testConfig.logComment("Started waiting for '" + currentPageName + "' to load at:- " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(startDate) + ". Wait upto " + objectWaitTimeInSecs + " seconds.");
 
-		WebDriverWait wait = new WebDriverWait(testConfig.driver, objectWaitTimeInSecs);
+		WebDriverWait wait = new WebDriverWait(testConfig.driver, Duration.ofSeconds(objectWaitTimeInSecs));
 		try{
 			wait.until(ExpectedConditions.visibilityOf(element));
 		}
@@ -88,7 +89,7 @@ public class WaitHelper {
 	 */
 	public static void waitForElement(Config testConfig, WebElement element, String description){
 		testConfig.logComment("Started waiting for '"+description+"'");
-		WebDriverWait wait = new WebDriverWait(testConfig.driver, Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime")));
+		WebDriverWait wait = new WebDriverWait(testConfig.driver, Duration.ofSeconds(Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime"))));
 		try{
 			wait.until(ExpectedConditions.visibilityOf(element));
 		}
@@ -118,7 +119,7 @@ public class WaitHelper {
 			testConfig.logFailToEndExecution("Element '" + description + "' is NULL, so can't waitForElementToBeDisplayed !!");
 		}
 		else {
-			WebDriverWait wait = new WebDriverWait(testConfig.driver, 2*Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime")));
+			WebDriverWait wait = new WebDriverWait(testConfig.driver, Duration.ofSeconds(2*Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime"))));
 			try {
 				wait.until(ExpectedConditions.visibilityOf(element));
 			}
@@ -139,7 +140,7 @@ public class WaitHelper {
 	
 	public static void waitForElementToBeHidden(Config testConfig, WebElement element, String description){
 		testConfig.logComment("Started waiting for '"+description+"' to be hidden");
-		WebDriverWait wait = new WebDriverWait(testConfig.driver, 2*Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime")));
+		WebDriverWait wait = new WebDriverWait(testConfig.driver, Duration.ofSeconds(2*Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime"))));
 		List<WebElement> elements = Arrays.asList(element);
 		if(element!=null)
 		{
@@ -163,7 +164,7 @@ public class WaitHelper {
 	
 	public static void waitForElementAttributeToBe(Config testConfig, WebElement element, String attributeName, String attributeValue, String description){
 		testConfig.logComment("Started waiting for '"+description+"' to have '"+attributeName+"'="+attributeValue);
-		WebDriverWait wait = new WebDriverWait(testConfig.driver, 2*Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime")));
+		WebDriverWait wait = new WebDriverWait(testConfig.driver, Duration.ofSeconds(2*Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime"))));
 		try {
 			wait.until(ExpectedConditions.attributeToBe(element, attributeName, attributeValue));
 		}
@@ -184,7 +185,7 @@ public class WaitHelper {
 	public static boolean waitForIframeAndSwitch(Config testConfig, String iframeId){
 		testConfig.logComment("Wait for iframe '"+iframeId+"' and switch");
 		testConfig.driver.switchTo().defaultContent();
-		WebDriverWait wait = new WebDriverWait(testConfig.driver, 2*Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime")));
+		WebDriverWait wait = new WebDriverWait(testConfig.driver, Duration.ofSeconds(2*Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime"))));
 		try {
 			int counter = Integer.parseInt(iframeId);
 			wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(counter));
@@ -201,7 +202,7 @@ public class WaitHelper {
 	
 	public static void waitForElementToBeClickable(Config testConfig, WebElement element, String description){
 		testConfig.logComment("Started waiting for '"+description+"' to be clickable");
-		WebDriverWait wait = new WebDriverWait(testConfig.driver, Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime")));
+		WebDriverWait wait = new WebDriverWait(testConfig.driver, Duration.ofSeconds(Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime"))));
 		try{
 			wait.until(ExpectedConditions.elementToBeClickable(element));
 		}
@@ -233,7 +234,7 @@ public class WaitHelper {
 	 */
 	public static void waitForOptionalElement(Config testConfig, WebElement element, String description){
 		testConfig.logComment("Started waiting for '"+description+"'");
-		WebDriverWait wait = new WebDriverWait(testConfig.driver, Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime")));
+		WebDriverWait wait = new WebDriverWait(testConfig.driver, Duration.ofSeconds(Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime"))));
 		try{
 			wait.until(ExpectedConditions.visibilityOf(element));
 		}

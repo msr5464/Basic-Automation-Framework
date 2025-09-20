@@ -1,4 +1,7 @@
 {
+  "name": "{$name}",
   "username": "{$username}",
-  "password": "{$password}"
+  "email": "{$email}",
+  "phone": "{$phone}",
+  "website": "{$website}"
 }

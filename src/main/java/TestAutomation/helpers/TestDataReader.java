@@ -52,46 +52,48 @@ public class TestDataReader {
 			fileInputStream = new FileInputStream(filename);
 			if (filename.endsWith(".xls"))
 			{
-				HSSFWorkbook workbook = new HSSFWorkbook(fileInputStream);
-				HSSFSheet sheet = workbook.getSheet(sheetName);
-				FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
+				try (HSSFWorkbook workbook = new HSSFWorkbook(fileInputStream)) {
+					HSSFSheet sheet = workbook.getSheet(sheetName);
+					FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
 
-				if (sheet == null)
-					testConfig.logFailToEndExecution("No sheet found with name '" + sheetName + "' in "+filename);
+					if (sheet == null)
+						testConfig.logFailToEndExecution("No sheet found with name '" + sheetName + "' in "+filename);
 
-				Iterator<Row> rows = sheet.rowIterator();
-				while (rows.hasNext())
-				{
-					HSSFRow row = (HSSFRow) rows.next();
-					List<String> data = new ArrayList<String>();
-					for (int z = 0; z < row.getLastCellNum(); z++)
+					Iterator<Row> rows = sheet.rowIterator();
+					while (rows.hasNext())
 					{
-						String str = convertCellValueToString(row.getCell(z), evaluator);
-						data.add(str);
+						HSSFRow row = (HSSFRow) rows.next();
+						List<String> data = new ArrayList<String>();
+						for (int z = 0; z < row.getLastCellNum(); z++)
+						{
+							String str = convertCellValueToString(row.getCell(z), evaluator);
+							data.add(str);
+						}
+						testData.add(data);
 					}
-					testData.add(data);
 				}
 			}
 			else if (filename.endsWith(".xlsx"))
 			{
-				XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
-				XSSFSheet sheet = workbook.getSheet(sheetName);
-				FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
+				try (XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream)) {
+					XSSFSheet sheet = workbook.getSheet(sheetName);
+					FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
 
 				if (sheet == null)
 					testConfig.logFailToEndExecution("No sheet found with name '" + sheetName + "' in "+filename);
 
-				Iterator<Row> rows = sheet.rowIterator();
-				while (rows.hasNext())
-				{
-					XSSFRow row = (XSSFRow) rows.next();
-					List<String> data = new ArrayList<String>();
-					for (int z = 0; z < row.getLastCellNum(); z++)
+					Iterator<Row> rows = sheet.rowIterator();
+					while (rows.hasNext())
 					{
-						String str = convertCellValueToString(row.getCell(z), evaluator);
-						data.add(str);
+						XSSFRow row = (XSSFRow) rows.next();
+						List<String> data = new ArrayList<String>();
+						for (int z = 0; z < row.getLastCellNum(); z++)
+						{
+							String str = convertCellValueToString(row.getCell(z), evaluator);
+							data.add(str);
+						}
+						testData.add(data);
 					}
-					testData.add(data);
 				}
 			}
 
@@ -170,23 +172,26 @@ public class TestDataReader {
 		String value = "";
 		switch(cell.getCellType())
 		{
-		case Cell.CELL_TYPE_NUMERIC:
+		case NUMERIC:
 			value = Double.toString(cell.getNumericCellValue());
 			break;
-		case Cell.CELL_TYPE_STRING:
+		case STRING:
 			value = cell.getRichStringCellValue().toString();
 			break;
-		case Cell.CELL_TYPE_FORMULA:
+		case FORMULA:
 			HSSFDataFormatter formatter = new HSSFDataFormatter();
 			value = formatter.formatCellValue(cell, evaluator); 
 			break;
-		case Cell.CELL_TYPE_ERROR:
+		case ERROR:
 			value = "";
 			break;
-		case Cell.CELL_TYPE_BOOLEAN:
+		case BOOLEAN:
 			value = Boolean.toString(cell.getBooleanCellValue());
 			break;
-		case Cell.CELL_TYPE_BLANK:
+		case BLANK:
+			value = "";
+			break;
+		case _NONE:
 			value = "";
 			break;
 		}
@@ -196,7 +201,7 @@ public class TestDataReader {
 
 	/**
 	 * This function is used to fetch the data of a particular 'cell' of excel sheet
-	 * @param testConfig TODO
+	 * @param testConfig
 	 * @param row
 	 * @param column
 	 * @return

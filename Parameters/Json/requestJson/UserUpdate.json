@@ -1,40 +1,7 @@
 {
+  "name": "{$name}",
   "username": "{$username}",
-  "first_name": "{$first_name}",
-  "middle_name": "{$middle_name}",
-  "last_name": "{$last_name}",
-  "gender": "{$gender}",
-  "birthdate": "1991-05-23T00:00:00.000Z",
-  "address": [
-    {
-      "tag": "home",
-      "street_1": "street one",
-      "street_2": "street two",
-      "street_3": "street three",
-      "postal_code": 1235,
-      "city": "city",
-      "state": "sample state",
-      "country": "USA",
-      "is_primary": true
-    }
-  ],
-  "locale": "USA",
-  "phone_number": [
-    {
-      "type": "home",
-      "area_code": 1,
-      "number": 0,
-      "is_primary": true
-    }
-  ],
-  "scope": "consumer",
-  "role": "user",
-  "timezone": "EST",
-  "image_urls": [
-    {
-      "type": "avatar",
-      "description": "sample description",
-      "url": "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
-    }
-  ]
+  "email": "{$email}",
+  "phone": "{$phone}",
+  "website": "{$website}"
 }

@@ -1,12 +1,5 @@
 {
-    "code": 200,
-    "status": true,
-    "type": "Command execution success!",
-    "message": "Successfully updated",
-    "data": {
-        "code": 200,
-        "status": true,
-        "type": "Command execution success!",
-        "message": "Successfully updated attributes."
-    }
+    "name": "morpheus",
+    "job": "zion resident",
+    "updatedAt": "2023-01-01T12:00:00.000Z"
 }

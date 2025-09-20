@@ -37,9 +37,11 @@ public class ApiExecutionDetails
 	
 	public enum ApiDetails 
 	{
-		USER_LOGIN("/user/login", ApiHost.ApiBaseUrl, ApiRequestType.POST, ContentType.JSON, null, null, Headers.Accept),
-		USER_UPDATE("/user", ApiHost.ApiBaseUrl, ApiRequestType.PUT, ContentType.JSON, null, null, Headers.Authorization),
-		GET_USER_DETAILS("/user/{$username}", ApiHost.ApiBaseUrl, ApiRequestType.GET, null, null, null, Headers.Authorization);
+		GET_USER_DETAILS("/users/{$userId}", ApiHost.ApiBaseUrl, ApiRequestType.GET, null, null, null, Headers.Accept),
+		GET_USERS_LIST("/users", ApiHost.ApiBaseUrl, ApiRequestType.GET, null, null, null, Headers.Accept),
+		CREATE_USER("/users", ApiHost.ApiBaseUrl, ApiRequestType.POST, ContentType.JSON, null, null, Headers.Accept),
+		UPDATE_USER("/users/{$userId}", ApiHost.ApiBaseUrl, ApiRequestType.PUT, ContentType.JSON, null, null, Headers.Accept),
+		DELETE_USER("/users/{$userId}", ApiHost.ApiBaseUrl, ApiRequestType.DELETE, null, null, null, Headers.Accept);
 		
 		ContentType apiContentType;
 		ApiHost apiHost;

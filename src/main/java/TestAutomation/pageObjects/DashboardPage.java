@@ -10,10 +10,10 @@ import TestAutomation.helpers.WaitHelper;
 
 public class DashboardPage {
 
-	@FindBy(css = "#user-links>li>details>summary>img")
+	@FindBy(xpath = "//img[@class='avatar circle']")
 	private WebElement userNameWidget;
 
-	@FindBy(css = ".shelf-title")
+	@FindBy(css = ".AppHeader-context-item-label")
 	private WebElement mainHeading;
 
 	public DashboardPage(Config testConfig) {
@@ -22,6 +22,6 @@ public class DashboardPage {
 	}
 
 	public void verifyDashboardPage(Config testConfig) {
-		AssertHelper.compareEquals(testConfig, "Main Heading on Page", "Learn Git and GitHub without any code!", mainHeading.getText());
+		AssertHelper.compareEquals(testConfig, "Main Heading on Page", "Dashboard", mainHeading.getText());
 	}
 }

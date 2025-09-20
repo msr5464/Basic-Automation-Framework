@@ -1,21 +1,16 @@
 package TestAutomation.helpers;
-import java.io.File;
+import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.HasInputDevices;
-import org.openqa.selenium.interactions.Mouse;
-import org.openqa.selenium.interactions.internal.Locatable;
 import org.openqa.selenium.support.ui.Select;
 
 /**
@@ -425,13 +420,13 @@ public class Element
 			return false;
 		try
 		{
-			testConfig.driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+			testConfig.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 			visible = element.isDisplayed();
 		}
 		catch (StaleElementReferenceException e)
 		{
 			testConfig.logComment("Stale element reference exception. Trying again...");
-			testConfig.driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+			testConfig.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 			visible = element.isDisplayed();
 
 		}
@@ -439,7 +434,7 @@ public class Element
 		{
 			visible = false;
 		}
-		catch (ElementNotVisibleException e)
+		catch (ElementNotInteractableException e)
 		{
 			visible = false;
 		}
@@ -447,7 +442,7 @@ public class Element
 		finally
 		{
 			Long ObjectWaitTime = Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime"));
-			testConfig.driver.manage().timeouts().implicitlyWait(ObjectWaitTime, TimeUnit.SECONDS);
+			testConfig.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ObjectWaitTime));
 		}
 		return visible;
 	}
@@ -459,13 +454,13 @@ public class Element
 			return false;
 		try
 		{
-			testConfig.driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+			testConfig.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 			visible = element.isEnabled();
 		}
 		catch (StaleElementReferenceException e)
 		{
 			testConfig.logComment("Stale element reference exception. Trying again...");
-			testConfig.driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+			testConfig.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 			visible = element.isDisplayed();
 
 		}
@@ -473,7 +468,7 @@ public class Element
 		{
 			visible = false;
 		}
-		catch (ElementNotVisibleException e)
+		catch (ElementNotInteractableException e)
 		{
 			visible = false;
 		}
@@ -481,7 +476,7 @@ public class Element
 		finally
 		{
 			Long ObjectWaitTime = Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime"));
-			testConfig.driver.manage().timeouts().implicitlyWait(ObjectWaitTime, TimeUnit.SECONDS);
+			testConfig.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ObjectWaitTime));
 		}
 		return visible;
 	}
@@ -519,9 +514,8 @@ public class Element
 	{
 		testConfig.logComment("Move Mouse on '" + description + "'");
 
-		Locatable hoverItem = (Locatable) element;
-		Mouse mouse = ((HasInputDevices) testConfig.driver).getMouse();
-		mouse.mouseMove(hoverItem.getCoordinates());
+		Actions actions = new Actions(testConfig.driver);
+		actions.moveToElement(element).perform();
 
 	}
 

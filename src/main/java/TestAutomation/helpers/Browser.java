@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -16,7 +16,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 /**
  * This class will contain all the function related to Browser
@@ -40,9 +39,7 @@ public class Browser {
 		String browserName = testConfig.getRunTimeProperty("browser").toLowerCase().trim();
 		testConfig.logComment("Launching '" + browserName + "' browser in local...");
 		WebDriver driver = null;
-		String browserVersion = "";
 		BrowserName browser = null;
-		DesiredCapabilities capabilities = null;
 		try {
 			browser = BrowserName.valueOf(browserName);
 		} catch (IllegalArgumentException e) {
@@ -50,27 +47,22 @@ public class Browser {
 		}
 		switch (browser) {
 		case firefox:
-			if (Config.osName.startsWith("Window"))
-				System.setProperty("webdriver.gecko.driver", "Drivers" + File.separator + "geckodriver.exe");
-			else
-				System.setProperty("webdriver.gecko.driver", "Drivers" + File.separator + "geckodriver");
+			// Selenium 4.x uses Selenium Manager, no need to set driver path manually
 			FirefoxOptions firefoxOptions = new FirefoxOptions();
+			firefoxOptions.addArguments("--start-fullscreen");
 			driver = new FirefoxDriver(firefoxOptions);
 			driver.manage().window().fullscreen();
 			break;
 
 		case chrome:
-			if (Config.osName.startsWith("Window"))
-				System.setProperty("webdriver.chrome.driver", "Drivers" + File.separator + "chromedriver.exe");
-			else
-				System.setProperty("webdriver.chrome.driver", "Drivers" + File.separator + "chromedriver");
+			// Selenium 4.x uses Selenium Manager, no need to set driver path manually
 			ChromeOptions chromeOptions = new ChromeOptions();
-			chromeOptions.addArguments("disable-infobars");
-			chromeOptions.addArguments("start-fullscreen");
-			capabilities = DesiredCapabilities.chrome();
-			capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-			capabilities.setCapability("version", browserVersion);
-			chromeOptions.merge(capabilities);
+			chromeOptions.addArguments("--disable-infobars");
+			chromeOptions.addArguments("--start-fullscreen");
+			chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
+			chromeOptions.addArguments("--disable-extensions");
+			chromeOptions.addArguments("--no-sandbox");
+			chromeOptions.addArguments("--disable-dev-shm-usage");
 			try {
 				driver = new ChromeDriver(chromeOptions);
 			} catch (WebDriverException e) {
@@ -83,9 +75,9 @@ public class Browser {
 		}
 		// Close the browser incase time taken to load a page exceed 2 min
 		Long ObjectWaitTime = Long.parseLong(testConfig.getRunTimeProperty("ObjectWaitTime"));
-		driver.manage().timeouts().implicitlyWait(ObjectWaitTime, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(ObjectWaitTime * 3, TimeUnit.SECONDS);
-		driver.manage().timeouts().setScriptTimeout(ObjectWaitTime * 3, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ObjectWaitTime));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(ObjectWaitTime * 3));
+		driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(ObjectWaitTime * 3));
 		testConfig.driver = driver;
 	}
 
