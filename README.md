@@ -2,7 +2,7 @@
 This is a modern Hybrid Automation Framework created using properties of `Page Object Model` and `Data Driven` automation frameworks.
 The framework is built using the latest Selenium 4 features with Java 11, TestNG and Maven for Web-based automation, integrated with Appium for Mobile App automation and also integrated with Rest Assured for API Automation execution.
 
-## 🚀 Latest Updates (2024)
+## 🚀 Latest Updates (2025)
 - ✅ **Upgraded to Selenium 4.15.0** - Latest WebDriver features and improved performance
 - ✅ **Updated to TestNG 7.9.0** - Enhanced test reporting and parallel execution
 - ✅ **Upgraded to Rest Assured 5.3.2** - Modern API testing capabilities
