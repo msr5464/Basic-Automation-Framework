@@ -1,17 +1,28 @@
-# Test Automation Framework
-This is Hybrid Automation Framework created using properties of `Page Object Model` and `Data Driven` automation frameworks.
-The framework is created using the latest Selenium 3 features with Java, TestNG and Maven for Web-based automation, integrated with Appium for Mobile App automation and also integrated with Rest Assured for API Automation execution.
+# Selenium & RestAssured - Automation Framework
+This is a modern Hybrid Automation Framework created using properties of `Page Object Model` and `Data Driven` automation frameworks.
+The framework is built using the latest Selenium 4 features with Java 11, TestNG and Maven for Web-based automation, integrated with Appium for Mobile App automation and also integrated with Rest Assured for API Automation execution.
 
+## 🚀 Latest Updates (2024)
+- ✅ **Upgraded to Selenium 4.15.0** - Latest WebDriver features and improved performance
+- ✅ **Updated to TestNG 7.9.0** - Enhanced test reporting and parallel execution
+- ✅ **Upgraded to Rest Assured 5.3.2** - Modern API testing capabilities
+- ✅ **Updated to Java 11** - Better performance and security
+- ✅ **Fixed all deprecated code** - Future-proof and warning-free
+- ✅ **Added JSONPlaceholder API integration** - Reliable API testing service
+- ✅ **Modern Selenium 4.x API** - Using Duration instead of deprecated TimeUnit
+- ✅ **Resource management improvements** - Proper try-with-resources implementation
 
-This is the list of tools, being used in this framework:
-1. Apache Maven 4.0.0
-2. Java 8
-3. Selenium Webdriver 3.11.0
-4. TestNG Framework 6.8.8
-5. Rest Assured Framework 3.2.0
-6. Chrome Web & Mobile View
-7. Firefox Web & Mobile View
-8. Email Notifications
+## 🛠️ Technology Stack
+1. **Apache Maven 3.11.0** - Build automation and dependency management
+2. **Java 11** - Modern Java features and performance improvements
+3. **Selenium WebDriver 4.15.0** - Latest browser automation capabilities
+4. **TestNG Framework 7.9.0** - Advanced testing framework with parallel execution
+5. **Rest Assured 5.3.2** - Powerful API testing library
+6. **Apache POI 5.2.4** - Excel file handling for test data
+7. **Chrome & Firefox** - Cross-browser testing support
+8. **JSONPlaceholder API** - Free API testing service (no API key required)
+9. **MongoDB Driver 4.11.1** - Database connectivity
+10. **Appium 9.0.0** - Mobile app automation
 
 
 # What is Test Automation Framework?
@@ -28,35 +39,140 @@ The Page Object Model is a design pattern of testing, derived from the Object Or
 ![Alt text](https://solutionscafe.files.wordpress.com/2014/01/untitled10.png "Page Object Model Example")
 
 
-# MAIN FEATURES OF THIS PROJECT
-1. Use of config.properties file
-2. Use of DataProvider to supply testdata
-3. Taking Screenshot on test failure
-4. Use of SoftAssert to run full test case
-5. Excel Sheet Reader to read testdata
-6. Supports execution on Multiple Browsers
-7. Proper Reporter Logging
-8. API Automation integrated (check ApiAutomationHelper.java)
-9. Contains 1 demo test script(testcase) of verifying login flow of ‘github.com’ website
+# 🌟 MAIN FEATURES OF THIS PROJECT
+
+## Core Framework Features
+1. **Configuration Management** - Flexible config.properties file system
+2. **Data-Driven Testing** - TestNG DataProvider for dynamic test data
+3. **Screenshot on Failure** - Automatic screenshot capture for debugging
+4. **Soft Assertions** - Complete test execution with detailed reporting
+5. **Excel Integration** - Apache POI for reading test data from Excel files
+6. **Cross-Browser Support** - Chrome, Firefox with Selenium Manager
+7. **Comprehensive Logging** - Detailed test execution logs and reports
+8. **API Automation** - Rest Assured integration for API testing
+9. **Mobile Testing** - Appium integration for mobile app automation
+
+## API Testing Features
+- **JSONPlaceholder Integration** - Free, reliable API testing service
+- **CRUD Operations** - Create, Read, Update, Delete user operations
+- **JSON Validation** - Comprehensive response validation
+- **Dynamic Test Data** - Parameterized API testing
+- **No API Key Required** - Ready-to-use API endpoints
+
+## Demo Test Cases
+- **Web UI Testing** - GitHub login flow automation
+- **API Testing** - Complete user management API suite
+  - Get user details
+  - Get users list
+  - Create new user
+  - Update existing user
+  - Delete user
 
 
-# CODE STRUCTURE
-1. Helpers : This package will contain all the Helper classes which can be used throughout the automation project.(Framework related classes)
+# 📁 CODE STRUCTURE
 
-2. PageObjects : This package contains classes representing each page which need to be automated.
+## Package Organization
+```
+src/
+├── main/java/TestAutomation/
+│   ├── helpers/           # Framework utility classes
+│   │   ├── Browser.java   # Browser management and WebDriver setup
+│   │   ├── Element.java   # Web element interactions and actions
+│   │   ├── WaitHelper.java # Explicit wait utilities
+│   │   ├── ApiHelper.java # API testing utilities
+│   │   ├── TestDataReader.java # Excel/CSV data reading
+│   │   └── ...           # Other helper classes
+│   └── pageObjects/      # Page Object Model classes
+│       ├── LoginPage.java
+│       ├── HomePage.java
+│       └── DashboardPage.java
+└── test/java/TestAutomation/
+    ├── TestLoginFlows.java    # Web UI test cases
+    └── TestUserApis.java      # API test cases
+```
 
-3. Tests : This package contains all the test scripts(test cases) which are currently automated in different classes.(Like- TestLoginFlows.java)
+## Key Components
+1. **Helpers Package** - Core framework utilities and reusable methods
+2. **PageObjects Package** - Page Object Model implementation for web pages
+3. **Tests Package** - Test case implementations using TestNG
+4. **Parameters Package** - Configuration files and test data
+5. **Drivers Package** - Browser driver executables
 
 
-# EXECUTION STEPS
-1. Import this project in eclipse as “Existing Maven Project”
-2. Install TestNG plugin in EcLipse
-3. Go to TestLoginFlows.java and Run the single testcase present there
-4. After execution check the output
+# 🚀 EXECUTION STEPS
 
-# OUTPUT
-Output can be seen out in index.html file present in test-output folder, or directly in the Eclipse console.
+## Prerequisites
+- Java 11 or higher
+- Maven 3.6 or higher
+- Chrome/Firefox browser installed
 
+## Setup Instructions
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd Basic-Automation-Framework
+   ```
 
-# FURTHER IMPLEMENTATIONS
-Now, you can take hints from the test script(testcase) present in TestLoginFlows.java file and as per your own needs create required testcases, after creating similar classes in 'PageObjects' and 'Tests' packages.
+2. **Import project in your IDE**
+   - **IntelliJ IDEA**: Open as Maven project
+   - **Eclipse**: Import as "Existing Maven Project"
+   - **VS Code**: Open folder and install Java extension pack
+
+3. **Install TestNG plugin** (if using Eclipse)
+
+## Running Tests
+
+### Run All Tests
+```bash
+mvn test
+```
+
+### Run Specific Test Class
+```bash
+# Web UI Tests
+mvn test -Dtest=TestLoginFlows
+
+# API Tests
+mvn test -Dtest=TestUserApis
+```
+
+### Run with Specific Browser
+```bash
+mvn test -Dbrowser=chrome
+mvn test -Dbrowser=firefox
+```
+
+## 📊 OUTPUT & REPORTS
+- **TestNG Reports**: `target/surefire-reports/index.html`
+- **Screenshots**: `test-output/screenshots/` (on test failures)
+- **Console Output**: Detailed logs in IDE console
+- **API Response Logs**: Detailed API request/response logging
+
+## 🔧 Configuration
+Update `Parameters/test.properties` for:
+- Browser selection
+- API endpoints
+- Test data
+- Timeout settings
+
+# 🚀 FURTHER IMPLEMENTATIONS
+
+## Adding New Test Cases
+1. **Web UI Tests**: Create new test methods in `TestLoginFlows.java` or new test classes
+2. **API Tests**: Add new test methods in `TestUserApis.java` or create new API test classes
+3. **Page Objects**: Add new page classes in `pageObjects` package
+4. **Helper Methods**: Extend existing helper classes or create new ones
+
+## Best Practices
+- Use Page Object Model for web UI tests
+- Implement proper wait strategies
+- Use data-driven testing with Excel/CSV
+- Add proper assertions and error handling
+- Follow naming conventions for test methods
+
+## API Testing
+The framework includes comprehensive API testing capabilities:
+- **Base URL**: `https://jsonplaceholder.typicode.com`
+- **No API Key Required**: Ready-to-use endpoints
+- **CRUD Operations**: Full user management testing
+- **JSON Validation**: Comprehensive response validation
