@@ -22,8 +22,6 @@ The framework is built using the latest Selenium 4 features with Java 11, TestNG
 7. **Chrome & Firefox** - Cross-browser testing support
 8. **JSONPlaceholder API** - Free API testing service (no API key required)
 9. **MongoDB Driver 4.11.1** - Database connectivity
-10. **Appium 9.0.0** - Mobile app automation
-
 
 # What is Test Automation Framework?
 A “Test Automation Framework” is scaffolding that is laid to provide an execution environment for the automation test scripts. The framework provides the user with various benefits that help them to develop, execute and report the automation test scripts efficiently. It is more like a system that has created specifically to automate our tests.
