@@ -1,12 +1,12 @@
 # Selenium & RestAssured - Automation Framework
 This is a modern Hybrid Automation Framework created using properties of `Page Object Model` and `Data Driven` automation frameworks.
-The framework is built using the latest Selenium 4 features with Java 11, TestNG and Maven for Web-based automation, integrated with Appium for Mobile App automation and also integrated with Rest Assured for API Automation execution.
+The framework is built using the latest Selenium 4 features with Java 21, TestNG and Maven for Web-based automation, integrated with Appium for Mobile App automation and also integrated with Rest Assured for API Automation execution.
 
 ## 🚀 Latest Updates (2025)
 - ✅ **Upgraded to Selenium 4.15.0** - Latest WebDriver features and improved performance
 - ✅ **Updated to TestNG 7.9.0** - Enhanced test reporting and parallel execution
 - ✅ **Upgraded to Rest Assured 5.3.2** - Modern API testing capabilities
-- ✅ **Updated to Java 11** - Better performance and security
+- ✅ **Updated to Java 21** - Better performance and security
 - ✅ **Fixed all deprecated code** - Future-proof and warning-free
 - ✅ **Added JSONPlaceholder API integration** - Reliable API testing service
 - ✅ **Modern Selenium 4.x API** - Using Duration instead of deprecated TimeUnit
@@ -14,7 +14,7 @@ The framework is built using the latest Selenium 4 features with Java 11, TestNG
 
 ## 🛠️ Technology Stack
 1. **Apache Maven 3.11.0** - Build automation and dependency management
-2. **Java 11** - Modern Java features and performance improvements
+2. **Java 21** - Modern Java features and performance improvements
 3. **Selenium WebDriver 4.15.0** - Latest browser automation capabilities
 4. **TestNG Framework 7.9.0** - Advanced testing framework with parallel execution
 5. **Rest Assured 5.3.2** - Powerful API testing library
@@ -100,7 +100,7 @@ src/
 # 🚀 EXECUTION STEPS
 
 ## Prerequisites
-- Java 11 or higher
+- Java 21 or higher
 - Maven 3.6 or higher
 - Chrome/Firefox browser installed
 
