@@ -17,7 +17,7 @@
 		<testng.version>7.9.0</testng.version>
 		<selenium.version>4.15.0</selenium.version>
 		<restassured.version>5.3.2</restassured.version>
-		<poi.version>5.2.4</poi.version>
+		<poi.version>5.4.0</poi.version>
 		<mongodb.version>4.11.1</mongodb.version>
 		<appium.version>9.0.0</appium.version>
 		<commonsio.version>2.15.1</commonsio.version>
