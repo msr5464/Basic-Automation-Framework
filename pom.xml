@@ -21,7 +21,7 @@
 		<mongodb.version>4.11.1</mongodb.version>
 		<appium.version>9.0.0</appium.version>
 		<commonsio.version>2.15.1</commonsio.version>
-		<jsoup.version>1.17.2</jsoup.version>
+		<jsoup.version>1.23.1</jsoup.version>
 		<jsch.version>0.1.55</jsch.version>
 		<json.version>20240303</json.version>
 		<guice.version>5.1.0</guice.version>
