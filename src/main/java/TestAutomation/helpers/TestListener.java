@@ -16,10 +16,20 @@ public class TestListener implements ITestListener, IInvokedMethodListener {
 
 	public void onTestFailure(ITestResult result) {
 		Config[] testConfigs = TestBase.threadLocalConfig.get();
+		String methodName = result.getMethod() == null ? "" : result.getMethod().getMethodName();
 		for (Config testConfig : testConfigs) {
 			if (testConfig != null) {
 				testConfig.logComment("***************EXECUTION OF TESTCASE ENDS HERE***************");
 				Browser.takeScreenshot(testConfig);
+				// The page as it actually was when this failed, for the
+				// QA-Agent-Network agents. A screenshot shows that something is
+				// wrong; the DOM is what says which locator stopped matching.
+				AgentTelemetry.captureDomSnapshot(testConfig, methodName);
+				// Record the failure itself on the action timeline, so the last
+				// entry is the action that broke rather than the last one that
+				// happened to be instrumented.
+				AgentTelemetry.recordAction(testConfig, methodName, "testFailure",
+						null, null, result.getThrowable());
 			}
 		}
 	}
